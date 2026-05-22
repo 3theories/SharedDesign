@@ -1,98 +1,56 @@
 // swift-tools-version: 5.9
 import PackageDescription
 
+// SharedDesign — domain-agnostic design system + generic UI
+// components shared across our apps. Color tokens (light + dark),
+// typography (Instrument Sans + Manrope), spacing / sizing /
+// shadows / elevations / gradients, plus polished primitives
+// like `Card`, `EmptyStateView`, `LoadingView`, `FilterChipView`,
+// `SharedBadge`, `SharedButton`, charts, gallery section.
+//
+// The repo USED to also vend a `SharedComponents` product
+// containing Niora-specific Sync / AppIntents / Widget /
+// LiveActivity / Recipe / SessionMesh-coupled services. Those
+// surfaces have been moved into Niora's own local
+// `iOS/SharedComponents` package so cross-app consumers (Avyra
+// and friends) don't pull SessionMesh, watch connectivity, or
+// any other domain-coupled dependency along with the design
+// tokens.
 let package = Package(
-    name: "SharedComponents",
+    name: "SharedDesign",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v17),
         .watchOS(.v10),
-        .macOS(.v14)
+        .macOS(.v14),
     ],
     products: [
-        // Domain-agnostic design system + generic UI components.
-        // Cross-app surface — Avyra depends on this directly.
-        // Niora's existing `import SharedComponents` keeps working
-        // because the legacy target re-exports SharedDesign via
-        // `@_exported import` (see Compatibility/Re-export.swift).
         .library(
             name: "SharedDesign",
             targets: ["SharedDesign"]
         ),
-        // Full SharedComponents surface — adds Niora-specific
-        // Sync / AppIntents / Widget / LiveActivity / Recipe
-        // composition on top of SharedDesign. Niora uses this.
-        .library(
-            name: "SharedComponents",
-            targets: ["SharedComponents"]
-        )
     ],
     dependencies: [
+        // Kingfisher backs the image-loading UI primitives
+        // (`AsyncBrandedImageView`, the gallery section). No
+        // other third-party deps — keeping the design system's
+        // surface narrow is what lets every app in the family
+        // depend on it without worrying about pulled-in
+        // transitives.
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.0.0"),
-        // SessionMesh is a separately-released package — the
-        // remote version pin keeps this package
-        // tag-consumable. Apps that only link the
-        // `SharedDesign` product don't transitively pick up
-        // SessionMesh anyway; the dependency is here for the
-        // Niora-only `SharedComponents` target below.
-        .package(url: "git@github.com:3theories/SessionMesh.git", from: "1.0.0")
     ],
     targets: [
-        // Design system + domain-agnostic components only.
-        // Disjoint source list from `SharedComponents` — SPM
-        // requires non-overlapping `sources:` when two targets
-        // share a path.
         .target(
             name: "SharedDesign",
             dependencies: [
-                .product(name: "Kingfisher", package: "Kingfisher")
+                .product(name: "Kingfisher", package: "Kingfisher"),
             ],
             path: "Sources/SharedComponents",
-            exclude: [
-                "Sync",
-                "AppIntents",
-                "Widget",
-                "LiveActivity",
-                "Components/Recipe",
-                "Models",
-                "Compatibility",
-                // SessionMesh-coupled services stay in Niora's
-                // target. Localization (`L10n`) is the only
-                // generic piece of Services and rides along
-                // because design components reference it.
-                "Services/ConnectivityManager.swift",
-                "Services/IncomingMessageBus.swift",
-                "Services/WatchSyncManager.swift"
-            ],
             resources: [
                 .process("Resources/Fonts"),
                 .process("Resources/Localizable.xcstrings"),
-                .process("Resources/ConfettiAssets.xcassets")
+                .process("Resources/ConfettiAssets.xcassets"),
             ]
         ),
-        // Niora-only additions. Sources are the inverse of
-        // SharedDesign's exclude list. `Compatibility/` holds
-        // the `@_exported import SharedDesign` re-export so
-        // legacy `import SharedComponents` callers in Niora still
-        // see DesignSystem / Components types.
-        .target(
-            name: "SharedComponents",
-            dependencies: [
-                "SharedDesign",
-                .product(name: "Kingfisher", package: "Kingfisher"),
-                .product(name: "SessionMesh", package: "SessionMesh"),
-                .product(name: "SessionMeshWatchConnectivity", package: "SessionMesh")
-            ],
-            path: "Sources/SharedComponents",
-            exclude: [
-                "DesignSystem",
-                "Components/Buttons",
-                "Components/Display",
-                "Components/Media",
-                "Components/States",
-                "Services/Localization",
-                "Resources"
-            ]
-        )
     ]
 )

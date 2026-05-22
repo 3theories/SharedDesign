@@ -8,15 +8,6 @@
         "revision" : "cf8be20d07654570554c8a8a4952bc8a5766a8b0",
         "version" : "8.9.0"
       }
-    },
-    {
-      "identity" : "sessionmesh",
-      "kind" : "remoteSourceControl",
-      "location" : "git@github.com:3theories/SessionMesh.git",
-      "state" : {
-        "revision" : "922593792a2282285f68606627f40f91afa47131",
-        "version" : "1.0.0"
-      }
     }
   ],
   "version" : 2
