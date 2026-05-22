@@ -29,13 +29,13 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.0.0"),
-        // SessionMesh lives in the Niora monorepo and is only
-        // consumed by the `SharedComponents` (Niora-only)
-        // target below. The path is relative to the package
-        // checkout — assumes the user has Niora checked out
-        // adjacent to this repo at `~/niora`. Apps that only
-        // link `SharedDesign` won't trigger this dependency.
-        .package(path: "../niora/iOS/SessionMesh")
+        // SessionMesh is a separately-released package — the
+        // remote version pin keeps this package
+        // tag-consumable. Apps that only link the
+        // `SharedDesign` product don't transitively pick up
+        // SessionMesh anyway; the dependency is here for the
+        // Niora-only `SharedComponents` target below.
+        .package(url: "git@github.com:3theories/SessionMesh.git", from: "1.0.0")
     ],
     targets: [
         // Design system + domain-agnostic components only.
