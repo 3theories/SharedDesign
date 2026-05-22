@@ -45,7 +45,12 @@ let package = Package(
             dependencies: [
                 .product(name: "Kingfisher", package: "Kingfisher"),
             ],
-            path: "Sources/SharedComponents",
+            // SPM convention is `path: nil` (defaults to
+            // `Sources/<target name>`), which matches our layout
+            // now that the source directory was renamed from
+            // `Sources/SharedComponents` → `Sources/SharedDesign`.
+            // Explicit anyway so future readers see the convention.
+            path: "Sources/SharedDesign",
             resources: [
                 .process("Resources/Fonts"),
                 .process("Resources/Localizable.xcstrings"),
