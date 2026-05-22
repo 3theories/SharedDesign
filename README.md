@@ -130,4 +130,4 @@ Consumers that pinned an old tag (1.x) continue to work against that historical 
 
 ## License
 
-Internal.
+MIT — see [LICENSE](LICENSE).
