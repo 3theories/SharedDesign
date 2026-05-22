@@ -2,8 +2,6 @@
 
 Cross-app iOS / watchOS / macOS design system. Color palettes (light + dark), typography (Instrument Sans + Manrope), spacing / sizing / shadow / elevation / gradient tokens, plus polished SwiftUI component primitives. Domain-agnostic — no business logic, no app-specific surfaces.
 
-> Renamed from `SharedComponents` to `SharedDesign` to avoid SPM package-identity collision with downstream apps' own local `SharedComponents` packages, and to make the scope obvious to consumers: this is the design layer, nothing more.
-
 ## What's in here
 
 ```
