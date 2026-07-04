@@ -16,7 +16,10 @@ import SwiftUI
             onLabelTap: (() -> Void)? = nil,
             showReturnToCurrent: Bool = false,
             onReturnToCurrentTap: (() -> Void)? = nil,
-            isPastWeek: Bool = false
+            isPastWeek: Bool = false,
+            previousButtonIdentifier: String? = nil,
+            nextButtonIdentifier: String? = nil,
+            weekLabelIdentifier: String? = nil
         ) {
             self.weekDates = weekDates
             self.canNavigateNext = canNavigateNext
@@ -28,6 +31,9 @@ import SwiftUI
             self.showReturnToCurrent = showReturnToCurrent
             self.onReturnToCurrentTap = onReturnToCurrentTap
             self.isPastWeek = isPastWeek
+            self.previousButtonIdentifier = previousButtonIdentifier
+            self.nextButtonIdentifier = nextButtonIdentifier
+            self.weekLabelIdentifier = weekLabelIdentifier
         }
 
         // MARK: Public
@@ -43,6 +49,9 @@ import SwiftUI
         public var showReturnToCurrent: Bool
         public var onReturnToCurrentTap: (() -> Void)?
         public var isPastWeek: Bool
+        public var previousButtonIdentifier: String?
+        public var nextButtonIdentifier: String?
+        public var weekLabelIdentifier: String?
 
         public var body: some View {
             HStack(spacing: self.theme.spacing.sm) {
@@ -70,6 +79,7 @@ import SwiftUI
                                 comment: "Week navigation pill accessibility hint for week picker"
                             ))
                             .accessibilityValue(self.weekRange)
+                            .accessibilityIdentifier(optional: self.weekLabelIdentifier)
 
                         if self.showReturnToCurrent {
                             self.returnToCurrentButton
@@ -159,6 +169,7 @@ import SwiftUI
                         comment: "Week navigation button accessibility hint when disabled"
                     )
             )
+            .accessibilityIdentifier(optional: self.previousButtonIdentifier)
         }
 
         private var nextButton: some View {
@@ -196,6 +207,7 @@ import SwiftUI
                         comment: "Week navigation button accessibility hint when disabled"
                     )
             )
+            .accessibilityIdentifier(optional: self.nextButtonIdentifier)
         }
 
         private var returnToCurrentButton: some View {
@@ -241,6 +253,17 @@ import SwiftUI
                 bundle: .module,
                 comment: "Week navigation return to current week accessibility label"
             ))
+        }
+    }
+
+    private extension View {
+        @ViewBuilder
+        func accessibilityIdentifier(optional identifier: String?) -> some View {
+            if let identifier {
+                accessibilityIdentifier(identifier)
+            } else {
+                self
+            }
         }
     }
 
