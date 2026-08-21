@@ -4,7 +4,7 @@ import SwiftUI
     import UIKit
 
     /// Haptic feedback styles (iOS only)
-    public enum HapticStyle {
+    public enum HapticStyle: Sendable {
         case light
         case medium
         case heavy
@@ -488,7 +488,7 @@ import SwiftUI
     // MARK: - Haptic Stubs for non-iOS platforms
 
     /// Haptic style stub for non-iOS platforms
-    public enum HapticStyle {
+    public enum HapticStyle: Sendable {
         case light, medium, heavy, soft, rigid, selection, success, warning, error
     }
 

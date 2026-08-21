@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - GradientTokens
 
 /// Gradient definitions for the design system
-public struct GradientTokens {
+public struct GradientTokens: Sendable {
     // MARK: Lifecycle
 
     public init(colorScheme: ColorScheme = .light) {

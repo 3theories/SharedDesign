@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - Theme
 
 /// Core theme protocol that defines all design tokens for the app
-public protocol Theme {
+public protocol Theme: Sendable {
     var colors: ColorTokens { get }
     var typography: TypographyTokens { get }
     var spacing: SpacingTokens { get }

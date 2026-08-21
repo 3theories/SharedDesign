@@ -3,7 +3,7 @@ import SwiftUI
 // MARK: - DesignTokens
 
 /// Base protocol for all design token types
-public protocol DesignTokens { }
+public protocol DesignTokens: Sendable { }
 
 // MARK: - ColorTokens
 
@@ -170,7 +170,7 @@ public protocol ShadowTokens: DesignTokens {
 // MARK: - ShadowStyle
 
 /// Shadow style definition
-public struct ShadowStyle {
+public struct ShadowStyle: Sendable {
     // MARK: Lifecycle
 
     public init(color: Color, radius: CGFloat, x: CGFloat = 0, y: CGFloat) {
