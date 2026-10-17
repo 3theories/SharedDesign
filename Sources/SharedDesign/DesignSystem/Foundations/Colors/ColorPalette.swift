@@ -171,7 +171,7 @@ public enum ColorPalette {
 
     /// Brand colors - Niora Design System v2
     public enum Brand {
-        public static let primary = Color(hex: 0xF97316) // Orange - main brand color (Figma: Primary)
+        public static let primary = Color(hex: 0xEA580C) // Vital Orange 400, Figma Primary/Default
         public static let primaryLight = Color(hex: 0xFF8E78) // Light Orange - secondary brand
 
         public static var secondary: Color { PulsePurple.shade400 }
