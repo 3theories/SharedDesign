@@ -10,13 +10,13 @@ public struct LightColorPalette: ColorTokens {
 
     // MARK: - Brand Colors (Niora Design System v2)
 
-    public var primary: Color { ColorPalette.VitalOrange.shade300 }
+    public var primary: Color { ColorPalette.VitalOrange.shade400 }
     public var secondary: Color { ColorPalette.PulsePurple.shade400 }
     public var tertiary: Color { ColorPalette.DeepWellnessGreen.shade500 }
 
     // MARK: - Accent Colors
 
-    public var accent: Color { ColorPalette.VitalOrange.shade300 }
+    public var accent: Color { ColorPalette.VitalOrange.shade400 }
     public var accentLight: Color { Color(hex: 0xFF8E78) } // Light Orange
     public var accentGold: Color { ColorPalette.SunriseAmber.shade500 }
     public var accentPink: Color { Color(hex: 0xFF375F) } // Pink accent

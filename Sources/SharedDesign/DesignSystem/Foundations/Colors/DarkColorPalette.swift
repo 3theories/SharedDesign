@@ -10,13 +10,13 @@ public struct DarkColorPalette: ColorTokens {
 
     // MARK: - Brand Colors (Niora Design System v3)
 
-    public var primary: Color { ColorPalette.VitalOrange.shade300 }
+    public var primary: Color { ColorPalette.VitalOrange.shade400 }
     public var secondary: Color { ColorPalette.SkyClarityBlue.shade500 }
     public var tertiary: Color { Color(hex: 0x26A69A) } // Bright Teal (visible on dark backgrounds)
 
     // MARK: - Accent Colors
 
-    public var accent: Color { ColorPalette.VitalOrange.shade300 }
+    public var accent: Color { ColorPalette.VitalOrange.shade400 }
     public var accentLight: Color { Color(hex: 0xFFEBD8) } // Soft Sand
     public var accentGold: Color { Color(hex: 0xF5B700) } // Golden Beam
     public var accentPink: Color { Color(hex: 0x26C8B9) } // Aqua Pulse (teal accent)
