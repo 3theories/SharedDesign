@@ -148,8 +148,8 @@ public struct DarkColorPalette: ColorTokens {
 
     // MARK: - Nutrient Colors
 
-    public var nutrientProtein: Color { self.error }
-    public var nutrientCarbs: Color { self.primary }
-    public var nutrientFat: Color { self.success }
+    public var nutrientProtein: Color { ColorPalette.NutritionCategories.proteinDark }
+    public var nutrientCarbs: Color { ColorPalette.NutritionCategories.carbsDark }
+    public var nutrientFat: Color { ColorPalette.NutritionCategories.fatsDark }
     public var nutrientWater: Color { self.info }
 }

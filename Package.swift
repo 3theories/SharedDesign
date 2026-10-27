@@ -57,5 +57,10 @@ let package = Package(
                 .process("Resources/ConfettiAssets.xcassets"),
             ]
         ),
+        .testTarget(
+            name: "SharedDesignTests",
+            dependencies: ["SharedDesign"],
+            path: "Tests/SharedDesignTests"
+        ),
     ]
 )
