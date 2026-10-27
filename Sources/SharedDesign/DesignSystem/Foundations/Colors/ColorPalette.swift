@@ -326,6 +326,11 @@ public enum ColorPalette {
         public static let fats = Color(hex: 0xFF2D55) // Pink/Red (industry standard for fat)
         public static let fiber = Color(hex: 0x8E8E93) // Gray (dietary fiber)
 
+        // Same hues as above, lifted for dark backgrounds (Apple's dark system cyan/green/pink)
+        public static let proteinDark = Color(hex: 0x64D2FF)
+        public static let carbsDark = Color(hex: 0x30D158)
+        public static let fatsDark = Color(hex: 0xFF375F)
+
         // Micronutrients
         public static let vitamins = Color(hex: 0x06B6D4) // Cyan
         public static let minerals = Color(hex: 0xEC4899) // Pink
