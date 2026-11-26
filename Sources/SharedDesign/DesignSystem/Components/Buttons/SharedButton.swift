@@ -140,6 +140,7 @@ public struct SharedButton: View {
 
     @Environment(\.theme) private var theme
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.sharedButtonLoader) private var buttonLoader
     @State private var isPressed = false
     @State private var showSuccess = false
     @State private var showFailure = false
@@ -335,8 +336,14 @@ public struct SharedButton: View {
 
     private var loadingContent: some View {
         HStack(spacing: self.theme.spacing.xs) {
-            LoadingView(style: .circular, size: 16, tint: self.foregroundColor)
-                .scaleEffect(self.progressScale)
+            Group {
+                if let buttonLoader = self.buttonLoader {
+                    buttonLoader(self.style, self.foregroundColor)
+                } else {
+                    LoadingView(style: .circular, size: 16, tint: self.foregroundColor)
+                }
+            }
+            .scaleEffect(self.progressScale)
 
             if self.size != .small {
                 Text(L10n.string("shared.button.loading", defaultValue: "Loading..."))
